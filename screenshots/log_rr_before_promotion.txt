@@ -1,0 +1,39 @@
+[ec2-user@ip-10-2-10-172 ~]$ mysql -h database-2.crnfxycinlvw.us-west-2.rds.amazonaws.com -u bamuse -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23
+Server version: 8.0.20 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> use testdb
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [testdb]>  show tables
+    -> ;
++------------------+
+| Tables_in_testdb |
++------------------+
+| account          |
++------------------+
+1 row in set (0.00 sec)
+
+MySQL [testdb]> select * from account
+    -> ;
++------+----------+
+| id   | name     |
++------+----------+
+| 1001 | fukuhara |
+| 1002 | bsmue    |
++------+----------+
+2 rows in set (0.00 sec)
+
+MySQL [testdb]> insert into account values(1003, "you"));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+MySQL [testdb]> insert into account values(1003, "you");
+ERROR 1290 (HY000): The MySQL server is running with the --read-only option so it cannot execute this statement
+MySQL [testdb]> Ctrl-C -- exit!

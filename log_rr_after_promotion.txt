@@ -1,0 +1,19 @@
+MySQL [testdb]> insert into account values(1003, "you");
+ERROR 2006 (HY000): MySQL server has gone away
+No connection. Trying to reconnect...
+Connection id:    10
+Current database: testdb
+
+Query OK, 1 row affected (0.04 sec)
+
+MySQL [testdb]> select * from account;
++------+----------+
+| id   | name     |
++------+----------+
+| 1001 | fukuhara |
+| 1002 | bsmue    |
+| 1003 | you      |
++------+----------+
+3 rows in set (0.00 sec)
+
+MySQL [testdb]> 

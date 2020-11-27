@@ -1,0 +1,112 @@
+fukuhara@fukuhara-MS-7C95:~/aws-a$ ssh -i "udacity.pem" ec2-user@ec2-54-92-54-96.ap-northeast-1.compute.amazonaws.com
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-10-1-10-176 ~]$ 
+[ec2-user@ip-10-1-10-176 ~]$ 
+[ec2-user@ip-10-1-10-176 ~]$ 
+[ec2-user@ip-10-1-10-176 ~]$ yum install mysql -y
+読み込んだプラグイン:extras_suggestions, langpacks, priorities, update-motd
+このコマンドを実行するには root である必要があります。
+[ec2-user@ip-10-1-10-176 ~]$ sudo yum install mysql -y
+読み込んだプラグイン:extras_suggestions, langpacks, priorities, update-motd
+amzn2-core                                                                                                                                                          | 3.7 kB  00:00:00     
+依存性の解決をしています
+--> トランザクションの確認を実行しています。
+---> パッケージ mariadb.x86_64 1:5.5.68-1.amzn2 を インストール
+--> 依存性解決を終了しました。
+
+依存性を解決しました
+
+===========================================================================================================================================================================================
+ Package                                   アーキテクチャー                         バージョン                                          リポジトリー                                  容量
+===========================================================================================================================================================================================
+インストール中:
+ mariadb                                   x86_64                                   1:5.5.68-1.amzn2                                    amzn2-core                                   8.8 M
+
+トランザクションの要約
+===========================================================================================================================================================================================
+インストール  1 パッケージ
+
+総ダウンロード容量: 8.8 M
+インストール容量: 49 M
+Downloading packages:
+mariadb-5.5.68-1.amzn2.x86_64.rpm                                                                                                                                   | 8.8 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  インストール中          : 1:mariadb-5.5.68-1.amzn2.x86_64                                                                                                                            1/1 
+  検証中                  : 1:mariadb-5.5.68-1.amzn2.x86_64                                                                                                                            1/1 
+
+インストール:
+  mariadb.x86_64 1:5.5.68-1.amzn2                                                                                                                                                          
+
+完了しました!
+[ec2-user@ip-10-1-10-176 ~]$ mysql -h database-1.cukae1uq6gfm.ap-northeast-1.rds.amazonaws.com
+ERROR 2059 (HY000): Authentication plugin 'caching_sha2_password' cannot be loaded: /usr/lib64/mysql/plugin/caching_sha2_password.so: cannot open shared object file: No such file or directory
+[ec2-user@ip-10-1-10-176 ~]$ mysql -h database-1.cukae1uq6gfm.ap-northeast-1.rds.amazonaws.com -u bamuse -p 
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23
+Server version: 8.0.20 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> databese ls
+    -> q
+    -> quit
+    -> 
+[1]+  停止                  mysql -h database-1.cukae1uq6gfm.ap-northeast-1.rds.amazonaws.com -u bamuse -p
+[ec2-user@ip-10-1-10-176 ~]$ mysql -h database-1.cukae1uq6gfm.ap-northeast-1.rds.amazonaws.com -u bamuse -p 
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 24
+Server version: 8.0.20 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> create database testdb;
+Query OK, 1 row affected (0.05 sec)
+
+MySQL [(none)]>  use  testdb;
+Database changed
+MySQL [testdb]> create table testdb.account(id int, name varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL [testdb]> create table testdb.account(id int, name varchar(20));
+Query OK, 0 rows affected (0.12 sec)
+
+MySQL [testdb]> show tables;
++------------------+
+| Tables_in_testdb |
++------------------+
+| account          |
++------------------+
+1 row in set (0.00 sec)
+
+MySQL [testdb]>  insert into account  value(1001,fukuhara); 
+ERROR 1054 (42S22): Unknown column 'fukuhara' in 'field list'
+MySQL [testdb]>  insert into account  value(1001,"fukuhara"); 
+Query OK, 1 row affected (0.02 sec)
+
+MySQL [testdb]>  insert into account  value(1002,"bsmue"); 
+Query OK, 1 row affected (0.02 sec)
+
+MySQL [testdb]> select * from account
+    -> ;
++------+----------+
+| id   | name     |
++------+----------+
+| 1001 | fukuhara |
+| 1002 | bsmue    |
++------+----------+
+2 rows in set (0.01 sec)
+
+MySQL [testdb]> 
