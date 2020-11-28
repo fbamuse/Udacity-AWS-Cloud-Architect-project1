@@ -47,10 +47,8 @@ routing table
 
 
 ![](rr_after_promotion.png)
+![](rr_after_promotion-2.png)
 
-
-
-![](2020-11-27-18-42-37.png)
 
 #
 # Part 2 Website Resiliency
