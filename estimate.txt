@@ -1,0 +1,25 @@
+
+1.Minimum RTO for a single AZ outage
+
+In a multi-AZ configuration, in the event of a single AZ failure, 
+failover is automatic and the RTO is a few minutes.
+
+2.Minimum RTO for a single region outage
+
+If a single region goes down, you will need to manually fail over.
+Because you have a Read Replica in another region, you need to 
+promote this instance to a new master before routing traffic 
+to the new endpoint. 
+RTO takes 30 minutes to 1 hour depending on the recovery through human judgment and operation.
+
+
+3.Minimum RPO for a single AZ outage
+
+With RDS point-in-time restores that upload transactions every 5 minutes,
+ the RPO is about 5 minutes.
+
+
+4.Minimum RPO for a single region outage
+
+A read replica that aims to keep the primary DB up to date can be achieved
+ at about the same level as the primary. RPO is up to about 10 minutes.
